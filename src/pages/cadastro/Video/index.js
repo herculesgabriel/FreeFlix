@@ -12,14 +12,11 @@ function CadastroVideo() {
         <h1>Cadastro</h1>
 
         <Link to="/">
-          <button>
-            Voltar
-          </button>
+          <button>Voltar</button>
         </Link>
+
         <Link to="/cadastro/categoria">
-          <button>
-            Cadastrar categoria
-          </button>
+          <button>Cadastrar categoria</button>
         </Link>
 
       </PageDefault>
