@@ -9,26 +9,44 @@ export const LogoImage = styled.img`
 `;
 
 export const MenuWrapper = styled.nav`
+
     width: 100%;
     height: 94px;
     z-index: 100;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     position: fixed;
     top: 0;
     left: 0;
     padding-left: 5%;
     padding-right: 5%;
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
+
     background-color: var(--black);
     border-bottom: 2px solid var(--primary);
 
     @media (max-width: 800px) {
         height: 40px;
         justify-content: center;
+    }
+
+    body {
+        --bodyPaddingTop: 94px;
+        padding-top: var(--bodyPaddingTop);
+    }
+
+    @media (max-width: 800px) {
+        .Menu {
+            height: 40px;
+            justify-content: center;
+        }
+        
+        body {
+            --bodyPaddingTop: 40px;
+            padding-top: var(--bodyPaddingTop);
+        }
     }
 
 `;

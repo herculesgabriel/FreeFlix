@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Button = styled.button`
 
-color: var(--white);
+    color: var(--white);
     border: 1px solid var(--white);
     box-sizing: border-box;
     cursor: pointer;
@@ -11,7 +11,7 @@ color: var(--white);
     font-weight: bold;
     font-size: 16px;
     outline: none;
-    border-radius: 4px;
+    border-radius: 5px;
     text-decoration: none;
     display: inline-block;
     transition: opacity .3s;
@@ -22,6 +22,9 @@ color: var(--white);
     }
 
     @media (max-width: 800px) {
+
+        /* a.ButtonLink {} */        
+
         border-radius: 0;
         border: 0;
         outline: none;
@@ -32,6 +35,9 @@ color: var(--white);
         bottom: 0;
         background-color: var(--primary);
         color: var(--white);
+
+        text-align: center;        
+    
     }
 `
 
