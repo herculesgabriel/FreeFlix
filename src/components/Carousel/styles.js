@@ -46,8 +46,12 @@ export const VideoCardList = styled.ul`
   padding-bottom: 32px;
   list-style: none;
   display: flex;
-  overflow-x: auto;
+  overflow-x: auto;  
   flex-direction: row;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
   
   li {
     margin-right: 16px;
