@@ -14,12 +14,12 @@ function CadastroVideo() {
         <Link to="/">
           <button>
             Voltar
-    </button>
+          </button>
         </Link>
         <Link to="/cadastro/categoria">
           <button>
             Cadastrar categoria
-    </button>
+          </button>
         </Link>
 
       </PageDefault>
