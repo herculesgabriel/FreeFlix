@@ -6,15 +6,15 @@ import Button from '../Button';
 
 function whereAmI() {
 
-    if (window.location.href === "http://localhost:3000/cadastro/video") {
+    if (window.location.href.includes("/cadastro/video")) {
         return (
             <Button as={Link} to="/cadastro/categoria">Cadastrar categoria</Button>
         )
-    } else if (window.location.href === "http://localhost:3000/cadastro/categoria") {
+    } else if (window.location.href.includes("/cadastro/categoria")) {
         return (
             <Button as={Link} to="/cadastro/video">Novo vídeo</Button>
         )
-    } else if (window.location.href === "http://localhost:3000/") {
+    } else {
         return (
             <div>
                 <Button as={Link} to="/cadastro/video">Novo vídeo</Button>
