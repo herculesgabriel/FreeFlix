@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
 import PageDefault from '../../../components/PageDefault';
 import { AppWrapper } from '../../../components/AppWrapper';
 import FormField from '../../../components/FormField';
+import Button from '../../../components/Button';
+import { FormWrapper } from '../../../components/FormField/style';
 
 function Categoria() {
     const valoresIniciais = {
@@ -22,10 +23,9 @@ function Categoria() {
     }
 
     function handleInputChange(infos) {
-        const { getAttribute, value } = infos.target;
         setValue(
-            getAttribute('name'),
-            value
+            infos.target.getAttribute('name'),
+            infos.target.value
         );
     }
 
@@ -44,52 +44,51 @@ function Categoria() {
 
                 <h1>Categoria: {values.nome}</h1>
 
-                <form onSubmit={handleSubmit}>
+                <FormWrapper>
 
-                    <FormField
-                        label="Nome da categoria"
-                        type="text"
-                        name="nome"
-                        value={values.nome}
-                        onChange={handleInputChange}
-                    />
+                    <form onSubmit={handleSubmit}>
 
-                    <FormField
-                        label="Descrição"
-                        type="text"
-                        name="descricao"
-                        value={values.descricao}
-                        onChange={handleInputChange}
-                    />
+                        <FormField
+                            label="Nome da categoria"
+                            type="text"
+                            name="nome"
+                            tagname="input"
+                            value={values.nome}
+                            onChange={handleInputChange}
+                        />
 
-                    <FormField
-                        label="Cor"
-                        type="text"
-                        name="cor"
-                        value={values.cor}
-                        onChange={handleInputChange}
-                    />
+                        <FormField
+                            label="Descrição"
+                            type="text"
+                            name="descricao"
+                            tagname="textarea"
+                            value={values.descricao}
+                            onChange={handleInputChange}
+                        />
 
-                    <button>Cadastrar</button>
-                </form>
+                        <FormField
+                            label="Cor"
+                            type="color"
+                            name="cor"
+                            tagname="input"
+                            value={values.cor}
+                            onChange={handleInputChange}
+                        />
 
-                <ul>
-                    {categorias.map((categoria, index) => {
-                        return (
-                            <li key={`${categoria}${index}`}>
-                                {categoria.nome}
-                            </li>
-                        )
-                    })}
-                </ul>
+                        <Button>Cadastrar</Button>
+                    </form>
 
+                    <ul>
+                        {categorias.map((categoria, index) => {
+                            return (
+                                <li key={`${categoria}${index}`}>
+                                    {categoria.nome}
+                                </li>
+                            )
+                        })}
+                    </ul>
 
-                <Link to="/">
-                    <br />
-                    <button>
-                        Voltar para Home
-                    </button>
-                </Link>
+                </FormWrapper>
 
             </PageDefault>
         </AppWrapper>

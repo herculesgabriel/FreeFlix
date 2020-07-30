@@ -1,19 +1,38 @@
 import React from 'react';
+import { FormWrapper, FormLabel, FormInput, FormTextArea } from './style';
 
-function FormField({ label, type, nome, value, onChange }) {
-    return (
-
-        <div>
-            <label>
-                {label}: <br />
-                <input
+function FormField({ tagname, label, type, name, value, onChange }) {
+    function findTagType() {
+        if (tagname === "input") {
+            return (
+                <FormInput
                     type={type}
                     value={value}
-                    name={nome}
+                    name={name}
                     onChange={onChange}
                 />
-            </label>
-        </div>
+            )
+        } else if (tagname === "textarea") {
+            return (
+                <FormTextArea
+                    type={type}
+                    value={value}
+                    name={name}
+                    onChange={onChange}
+                />
+            )
+        }
+
+    }
+
+    return (
+
+        <FormWrapper>
+            <FormLabel>
+                {label}: <br />
+                {findTagType()}
+            </FormLabel>
+        </FormWrapper>
 
     );
 }
