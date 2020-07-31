@@ -1,34 +1,22 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import PageDefault from '../../../components/PageDefault';
 import { AppWrapper } from '../../../components/AppWrapper';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import { FormWrapper } from '../../../components/FormField/style';
+import useForm from '../../../hooks/useForm';
+import config from '../../../config';
 
-function Categoria() {
+function CadastroCategoria() {
   const valoresIniciais = {
     nome: '',
     descricao: '',
     cor: '',
   };
+
+  const { values, handleInputChange, clearForm } = useForm(valoresIniciais);
   const [categorias, setCategorias] = useState([]);
-  const [values, setValues] = useState(valoresIniciais);
-  // na boa, como é que isso funciona por debaixo dos panos?
-
-  function setValue(chave, valor) {
-    // Marco, wtf???
-    setValues({
-      ...values,
-      [chave]: valor,
-    });
-  }
-
-  function handleInputChange(infos) {
-    setValue(
-      infos.target.getAttribute('name'),
-      infos.target.value,
-    );
-  }
 
   function handleSubmit(infos) {
     infos.preventDefault();
@@ -36,31 +24,21 @@ function Categoria() {
       ...categorias,
       values,
     ]);
-    setValues(valoresIniciais);
+    clearForm();
   }
 
   useEffect(() => {
-    const URL = window.location.hostname.includes('localhost')
-      ? 'http://localhost:8080/categorias'
-      : 'https://free-flix.herokuapp.com/categorias';
-    fetch(URL).then(async (res) => {
-      const response = await res.json();
-      setCategorias([
-        ...response,
-      ]);
-    });
-    // setTimeout(() => {
-    //   setCategorias([
-    //     ...categorias,
-    //     {
-    //       id: 1,
-    //       nome: 'Front-end',
-    //       categoria: 'Uma categoria qualquer',
-    //       cor: '#6BD1FF',
-    //     },
-    //   ]);
-    // }, 4 * 1000);
-  }, [values.name]);
+    fetch(`${config.URL_TOP}/categorias`)
+      .then(async (categories) => {
+        const response = await categories.json();
+        return response;
+      })
+      .then((res) => {
+        setCategorias([
+          ...res,
+        ]);
+      });
+  });
 
   return (
     <AppWrapper>
@@ -116,8 +94,8 @@ function Categoria() {
 
           <ul>
             {categorias.map((categoria) => (
-              <li key={`${categoria.nome}`}>
-                {categoria.nome}
+              <li key={`${categoria.titulo}`}>
+                {categoria.titulo}
               </li>
             ))}
           </ul>
@@ -129,4 +107,4 @@ function Categoria() {
   );
 }
 
-export default Categoria;
+export default CadastroCategoria;
