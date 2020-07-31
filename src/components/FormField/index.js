@@ -1,40 +1,53 @@
 import React from 'react';
-import { FormWrapper, FormLabel, FormInput, FormTextArea } from './style';
+import PropTypes from 'prop-types';
+import { FormWrapper, FormLabel, Input } from './style';
 
-function FormField({ tagname, label, type, name, value, onChange }) {
-    function findTagType() {
-        if (tagname === "input") {
-            return (
-                <FormInput
-                    type={type}
-                    value={value}
-                    name={name}
-                    onChange={onChange}
-                />
-            )
-        } else if (tagname === "textarea") {
-            return (
-                <FormTextArea
-                    type={type}
-                    value={value}
-                    name={name}
-                    onChange={onChange}
-                />
-            )
-        }
+function FormField({
+  tagname, label, type, name, value, onChange,
+}) {
+  const fieldId = `id_${name}`;
+  const isTypeTextarea = tagname === 'textarea';
+  const tag = isTypeTextarea ? 'textarea' : 'input';
 
-    }
+  return (
 
-    return (
+    <FormWrapper>
+      <FormLabel>
+        <FormLabel.Text
+          htmlFor={fieldId}
+        >
+          {label}
+          :
+        </FormLabel.Text>
+        <br />
+        <Input
+          as={tag}
+          id={fieldId}
+          type={type}
+          value={value}
+          name={name}
+          onChange={onChange}
+        />
+      </FormLabel>
 
-        <FormWrapper>
-            <FormLabel>
-                {label}: <br />
-                {findTagType()}
-            </FormLabel>
-        </FormWrapper>
+    </FormWrapper>
 
-    );
+  );
 }
+
+FormField.defaultProps = {
+  type: 'text',
+  value: '',
+  onChange: () => { },
+};
+
+FormField.propTypes = {
+  tagname: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+};
 
 export default FormField;

@@ -1,48 +1,51 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const FormWrapper = styled.div`
-    margin: 32px 16px;
-    display: flex;
+  margin: 32px 16px;
+  display: flex;
 
-    @media (max-width: 800px) {
-        flex-direction: column;
-        margin: auto;
-    }
+  input[type="color"] {
+    padding: 0 0 0 56px;
+    border-radius: 5px;
+    border: solid;
+  }
 
-    ul {
-        margin-left: 50px;
-        font-size: 36px;
-    }    
+  @media (max-width: 800px) {
+    flex-direction: column;
+    margin: auto;
+  }
+
+  ul {
+    margin-left: 50px;
+    font-size: 36px;
+  }    
 `;
 
 export const FormLabel = styled.label`
-    font-size: 18px;
-    margin-bottom: 16px;
+  font-size: 18px;
+  margin-bottom: 16px;  
 `;
 
-export const FormInput = styled.input`
-    border-radius: 5px;
-    width: 350px;
-    height: 40px;
-
-    @media (max-width: 800px) {
-        width: 80vw;
-        height: 35px
-    }
+FormLabel.Text = styled.span`
+  
 `;
 
-export const FormTextArea = styled.textarea`
-    border-radius: 5px;
-    width: 350px;
-    height: 40px;
+export const Input = styled.input`  
+  border-radius: 5px;
+  width: 350px;
+  height: 40px;
+  
+  resize: none;
+  border-width: 0 0 4px 0;  
+    
+  &:focus {
+    border-bottom-color: var(--primary);
+  }
 
-    @media (max-width: 800px) {
-        width: 80vw;
-        height: 35px
-    }
+  transition: 0.3s;
 
+  @media (max-width: 800px) {
+    width: 80vw;
+    height: 35px
+  }
 `;
-
-
-
-
