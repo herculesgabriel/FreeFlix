@@ -9,6 +9,8 @@ function FormField({
   const isTypeTextarea = tagname === 'textarea';
   const tag = isTypeTextarea ? 'textarea' : 'input';
 
+  const hasValue = Boolean(value.length);
+
   return (
 
     <FormWrapper>
@@ -24,6 +26,7 @@ function FormField({
           as={tag}
           id={fieldId}
           type={type}
+          hasValue={hasValue}
           value={value}
           name={name}
           onChange={onChange}

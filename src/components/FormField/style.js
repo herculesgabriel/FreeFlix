@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const FormWrapper = styled.div`
   margin: 32px 16px;
@@ -48,4 +48,9 @@ export const Input = styled.input`
     width: 80vw;
     height: 35px
   }
+
+  ${({ hasValue }) => hasValue && css`
+    background: var(--primary)
+  `};
+
 `;

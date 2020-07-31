@@ -26,15 +26,7 @@ a {
 }
 
 #root {
-  min-height: 100vh;
-  background-color: orange;
+  min-height: 100vh;  
   display: flex;  
   flex-direction: column;
 }
-
-/* #root {
-  background-color: orange;
-  min-height: calc(100vh - var(--bodyPaddingTop));
-  display: flex;
-  flex-direction: column;
-} */

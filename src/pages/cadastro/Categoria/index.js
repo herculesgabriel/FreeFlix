@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageDefault from '../../../components/PageDefault';
 import { AppWrapper } from '../../../components/AppWrapper';
 import FormField from '../../../components/FormField';
@@ -38,6 +38,28 @@ function Categoria() {
     ]);
     setValues(valoresIniciais);
   }
+
+  useEffect(() => {
+    const URL = 'http://localhost:8080/categorias';
+
+    fetch(URL).then(async (res) => {
+      const response = await res.json();
+      setCategorias([
+        ...response,
+      ]);
+    });
+    // setTimeout(() => {
+    //   setCategorias([
+    //     ...categorias,
+    //     {
+    //       id: 1,
+    //       nome: 'Front-end',
+    //       categoria: 'Uma categoria qualquer',
+    //       cor: '#6BD1FF',
+    //     },
+    //   ]);
+    // }, 4 * 1000);
+  }, [values.name]);
 
   return (
     <AppWrapper>
@@ -82,9 +104,18 @@ function Categoria() {
             <Button>Cadastrar</Button>
           </form>
 
+          {
+            categorias.length === 0
+            && (
+              <div>
+                Carregando lista...
+              </div>
+            )
+          }
+
           <ul>
-            {categorias.map((categoria, index) => (
-              <li key={`${categoria}${index}`}>
+            {categorias.map((categoria) => (
+              <li key={`${categoria.nome}`}>
                 {categoria.nome}
               </li>
             ))}
