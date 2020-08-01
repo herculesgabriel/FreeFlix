@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import PageDefault from '../../../components/PageDefault';
 import { AppWrapper } from '../../../components/AppWrapper';
@@ -15,7 +14,7 @@ function CadastroCategoria() {
     cor: '',
   };
 
-  const { values, handleInputChange, clearForm } = useForm(valoresIniciais);
+  const { handleInputChange, values, clearForm } = useForm(valoresIniciais);
   const [categorias, setCategorias] = useState([]);
 
   function handleSubmit(infos) {
@@ -24,21 +23,19 @@ function CadastroCategoria() {
       ...categorias,
       values,
     ]);
+
     clearForm();
   }
 
   useEffect(() => {
     fetch(`${config.URL_TOP}/categorias`)
       .then(async (categories) => {
-        const response = await categories.json();
-        return response;
-      })
-      .then((res) => {
+        const resposta = await categories.json();
         setCategorias([
-          ...res,
+          ...resposta,
         ]);
       });
-  }, [values.name]);
+  }, []);
 
   return (
     <AppWrapper>
@@ -94,7 +91,7 @@ function CadastroCategoria() {
 
           <ul>
             {categorias.map((categoria) => (
-              <li key={console.log(categoria.titulo)}>
+              <li key={categoria.titulo}>
                 {categoria.titulo}
               </li>
             ))}
