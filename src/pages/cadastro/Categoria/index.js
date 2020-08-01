@@ -38,7 +38,7 @@ function CadastroCategoria() {
           ...res,
         ]);
       });
-  });
+  }, [values.name]);
 
   return (
     <AppWrapper>
@@ -94,7 +94,7 @@ function CadastroCategoria() {
 
           <ul>
             {categorias.map((categoria) => (
-              <li key={`${categoria.titulo}`}>
+              <li key={console.log(categoria.titulo)}>
                 {categoria.titulo}
               </li>
             ))}
